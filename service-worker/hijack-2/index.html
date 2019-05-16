@@ -1,0 +1,16 @@
+<html>
+
+  <head></head>
+  <body>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('hijack-2-sw.js').then(() => {
+          console.log('service worker registered')
+        }).catch(() => {
+          console.error('something went wrong')
+        })
+      }
+    </script>
+  </body>
+
+</html>
