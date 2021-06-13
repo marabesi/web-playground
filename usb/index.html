@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>USB playground</title>
+</head>
+<body>
+
+<label for="filter-by">Filter
+  <input type="text" name="filter-by" id="filter-by" placeholder="all devices" tabindex="0" />
+  <button type="button" id="find">Find connected devices</button>
+</label>
+
+<table width="100%" border="1">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>Name</th>
+    <th>opened</th>
+  </tr>
+  </thead>
+  <tbody id="list">
+
+  </tbody>
+</table>
+<script src="app.js"></script>
+</body>
+</html>
