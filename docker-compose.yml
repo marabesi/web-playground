@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    image: php:8.0
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - 80:8080
+    command: php -S 0.0.0.0:8080 -t .
