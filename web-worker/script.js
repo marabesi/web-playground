@@ -1,6 +1,3 @@
-importScripts('https://unpkg.com/format-to-json@2.1.2/fmt2json.min.js')
-
-
 async function doWork(_doc) {
   const loading = _doc.querySelector('.loading');
 
@@ -20,7 +17,7 @@ async function doWork(_doc) {
   const loading = _doc.querySelector('.loading');
   const fire = _doc.querySelector('.do-work');
 
-  const worker = new Worker('web-worker/worker.js')
+  const worker = new Worker('worker.js')
 
   fire.addEventListener('click', () => {
     loading.style = 'display: block'
