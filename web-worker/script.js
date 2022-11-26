@@ -1,3 +1,6 @@
+importScripts('https://unpkg.com/format-to-json@2.1.2/fmt2json.min.js')
+
+
 async function doWork(_doc) {
   const loading = _doc.querySelector('.loading');
 
