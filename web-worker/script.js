@@ -17,14 +17,16 @@ async function doWork(_doc) {
   const loading = _doc.querySelector('.loading');
   const fire = _doc.querySelector('.do-work');
 
-  const worker = new Worker('worker.js')
-
   fire.addEventListener('click', () => {
-    loading.style = 'display: block'
+    const worker = new Worker('worker.js');
+
+    loading.style = 'display: block';
     worker.postMessage('go');
+
+    worker.onmessage = () => {
+      loading.style = 'display: none';
+      worker.terminate();
+    }
   })
 
-  worker.onmessage = () => {
-    loading.style = 'display: none'
-  }
 })(document);

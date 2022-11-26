@@ -1,9 +1,5 @@
-onmessage = () => {
-  let i = 0;
-
-  while (i < 136857) {
-    i++
-  }
+onmessage = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
 
   postMessage({
     result: true
