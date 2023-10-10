@@ -3,16 +3,23 @@ import { useState } from "react";
 function App() {
   const [loading, setLoading] = useState(false);
 
+  const code = `onmessage = e => {
+    let i = 0;
+
+    while (i < 10) {
+      i++;
+    }
+    postMessage()
+  }`;
+
+  const worker = new Worker(URL.createObjectURL(new Blob([code])));
+
+  worker.onmessage = () => setLoading(false);
+
   const doWork = async () => {
       setLoading(true);
 
-      let i = 0;
-
-       await new Promise((resolve, reject) => {
-         setTimeout(() => resolve(true), 800);
-       });
-
-      setLoading(false);
+      worker.postMessage();
   }
 
   return (
