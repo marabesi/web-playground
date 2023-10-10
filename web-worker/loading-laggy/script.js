@@ -5,7 +5,7 @@ async function doWork(_doc) {
 
   let i = 0;
 
-  while (i < 136857) {
+  while (i < 1368575) {
     console.log(i)
     i++
   }

@@ -1,0 +1,14 @@
+{
+  "name": "loading-laggy",
+  "version": "1.0.0",
+  "description": "## References",
+  "main": "script.js",
+  "scripts": {
+    "start": "http-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
