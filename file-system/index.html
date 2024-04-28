@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <textarea id="file-content">My content to save</textarea>
+    <button onclick="main()">pick dir</button>
+    <button onclick="save()">save</button>
+    <script async>
+      async function main() {
+        const dirHandle = await window.showDirectoryPicker();
+
+        const fileHandler = await dirHandle.getFileHandle("experiment");
+
+        //console.log(fileHandler);
+
+        //const writable = await fileHandler.createWritable();
+
+      }
+
+      async function save() {
+        const contents = document.querySelector("#file-content").value;
+        const fileName = "fileToGetName";
+        const dirHandle = await window.showDirectoryPicker();
+
+        // assuming we have a directory handle: 'currentDirHandle'
+        const fileHandle = await dirHandle.getFileHandle(fileName, { create: true });
+
+        const writable = await fileHandle.createWritable();
+
+        // Write the contents of the file to the stream.
+        await writable.write(contents);
+
+        // Close the file and write the contents to disk.
+        await writable.close();
+      }
+    </script>
+</div>
+</body>
+</html>
