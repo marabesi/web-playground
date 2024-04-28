@@ -6,36 +6,46 @@
 </head>
 <body>
 <div>
-    <textarea id="file-content">My content to save</textarea>
-    <button onclick="main()">pick dir</button>
+    <h1 id="title"></h1>
+
+    <div>
+        <label for="filename">file name</label>
+        <input type="text" id="filename" value="fileToGetName.json" />
+    </div>
+
+    <div>
+        <textarea id="file-content">My content to save</textarea>
+    </div>
+
     <button onclick="save()">save</button>
+
+    <button onclick="read()">open file</button>
+
     <script async>
-      async function main() {
-        const dirHandle = await window.showDirectoryPicker();
-
-        const fileHandler = await dirHandle.getFileHandle("experiment");
-
-        //console.log(fileHandler);
-
-        //const writable = await fileHandler.createWritable();
-
-      }
-
       async function save() {
         const contents = document.querySelector("#file-content").value;
-        const fileName = "fileToGetName";
+        const fileName = document.querySelector("#filename").value;
         const dirHandle = await window.showDirectoryPicker();
 
-        // assuming we have a directory handle: 'currentDirHandle'
         const fileHandle = await dirHandle.getFileHandle(fileName, { create: true });
 
         const writable = await fileHandle.createWritable();
 
-        // Write the contents of the file to the stream.
-        await writable.write(contents);
+        await writable.write(JSON.stringify(contents));
 
-        // Close the file and write the contents to disk.
         await writable.close();
+      }
+
+      async function read() {
+        const [fileHandle] = await window.showOpenFilePicker();
+        const file = await fileHandle.getFile();
+        document.querySelector("#file-content").value = await file.text();
+      }
+
+      if (window.showDirectoryPicker !== undefined) {
+        document.querySelector("#title").innerText = "Filesystem API supported";
+      } else {
+        document.querySelector("#title").innerText = "Filesystem API NOT supported";
       }
     </script>
 </div>
