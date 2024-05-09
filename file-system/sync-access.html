@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <h1 id="title"></h1>
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemSyncAccessHandle">MDN FileSystemSyncAccessHandle</a>
+
+    <div>
+        <label for="filename">file name</label>
+        <input type="text" id="filename" value="fileToGetName.json" />
+    </div>
+
+    <div>
+        <label for="file-content">file content</label>
+        <textarea id="file-content">My content to save</textarea>
+    </div>
+
+    <button onclick="save()">save</button>
+
+    <button onclick="read()">open file</button>
+
+    <script async>
+      async function save() {
+        const contents = document.querySelector("#file-content").value;
+        const fileName = document.querySelector("#filename").value;
+
+        const root = await navigator.storage.getDirectory();
+
+        const draftHandle = await root.getFileHandle("draft.txt", { create: true });
+        // Get sync access handle
+        const accessHandle = await draftHandle.createSyncAccessHandle();
+      }
+
+      async function read() {
+        document.querySelector("#file-content").value = await file.text();
+      }
+
+      if (window.showDirectoryPicker !== undefined) {
+        document.querySelector("#title").innerText = "Filesystem API supported";
+      } else {
+        document.querySelector("#title").innerText = "Filesystem API NOT supported";
+      }
+    </script>
+</div>
+</body>
+</html>
