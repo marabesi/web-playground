@@ -10,3 +10,7 @@ through the content.
  links are available:
 
  - [WEB WORKERS TO THE RESCUE – HOW TO WORK WITH JSON STRINGS WITHOUT BLOCKING USER INTERACTIONS](https://marabesi.com/javascript/web-workers-to-the-rescue-how-to-work-with-json-strings-without-blocking-user-interactions.html)
+
+## Where to go from here?
+
+- [Multicore example](https://github.com/whatwg/html/blob/319fd3230aed0699544f8ae9dc8a36862bf4fa77/demos/workers/multicore/worker.js)
