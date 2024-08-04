@@ -1,0 +1,60 @@
+{
+  "name": "phaser-project-template",
+  "version": "1.0.0",
+  "description": "enable3d + Phaser 3 starter template",
+  "homepage": "https://github.com/yandeu/phaser-project-template#readme",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --config webpack/webpack.dev.js",
+    "build": "webpack --config webpack/webpack.prod.js",
+    "serve": "serve dist"
+  },
+  "keywords": [
+    "Phaser",
+    "Phaser 3",
+    "Phaser3",
+    "html5 game",
+    "TypeScript",
+    "webpack",
+    "starter"
+  ],
+  "author": {
+    "name": "Yannick Deubel",
+    "url": "https://github.com/yandeu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yandeu/phaser-project-template.git"
+  },
+  "template": {
+    "name": "phaser-project-template",
+    "url": "https://github.com/yandeu/phaser-project-template",
+    "author": "Yannick Deubel (https://github.com/yandeu)"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@enable3d/phaser-extension": "~0.25.3",
+    "matter-js": "^0.19.0",
+    "phaser": "~3.55.2",
+    "poly-decomp": "^0.3.0",
+    "three": "~0.144.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-merge": "^5.8.0",
+    "webpack-obfuscator": "^3.5.1",
+    "webpack-dev-server": "^4.11.1",
+    "workbox-webpack-plugin": "^6.5.4",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "@types/node": "^18.14.0"
+  }
+}
