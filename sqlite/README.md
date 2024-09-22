@@ -1,4 +1,4 @@
-## resources
+# Resources
 
 - <https://github.com/sqlite/sqlite-wasm?tab=readme-ov-file#in-a-wrapped-worker-with-opfs-if-available> official project
 for sqlite3 and wasm
