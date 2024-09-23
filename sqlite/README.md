@@ -6,3 +6,4 @@ for sqlite3 and wasm
 - where is the data stored using OPFS?
   - <https://stackoverflow.com/questions/77428281/where-does-opfs-with-sqlite-wasm-store-files-for-the-chrome-extension>
 - <https://github.com/nalgeon/sqlime>
+- https://sqlite.org/wasm/doc/trunk/npm.md
