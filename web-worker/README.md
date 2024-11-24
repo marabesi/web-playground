@@ -14,3 +14,8 @@ through the content.
 ## Where to go from here?
 
 - [Multicore example](https://github.com/whatwg/html/blob/319fd3230aed0699544f8ae9dc8a36862bf4fa77/demos/workers/multicore/worker.js)
+
+## Editions
+
+- [First in person edition in Madrid](https://www.meetup.com/pt-BR/codurance-craft-events/events/295215778)
+  - [Blog post sharing the experience](https://marabesi.com/2023/10/20/live-coding-with-web-workers-an-experiment.html)
