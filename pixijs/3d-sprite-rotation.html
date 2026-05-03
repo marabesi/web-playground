@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Pixi.js 3D Sprite Rotation</title>
+    <link rel="stylesheet" href="3d-sprite-style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>🎮 3D Sprite Inspector</h1>
+            <p>Drag to rotate sprites in 3D space</p>
+        </header>
+        <div id="game-container">
+            <div class="loading">Loading...</div>
+        </div>
+        <div class="stats">
+            <span>Sprites: <strong id="spriteCount">0</strong></span>
+            <span>FPS: <strong id="fps">60</strong></span>
+        </div>
+        <div class="controls">
+            <button id="addSprite">+ Add Sprite</button>
+            <button id="clearAll">Clear All</button>
+        </div>
+    </div>
+    <script async src="https://cdn.jsdelivr.net/npm/pixi.js@7.3.2/dist/pixi.min.js"></script>
+    <script src="3d-sprite-main.js"></script>
+</body>
+</html>

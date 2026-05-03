@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixi.js Interactive Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Pixi.js Interactive Example</h1>
+            <p>Click and drag to interact • Press SPACE to randomize colors</p>
+        </header>
+        <div id="game-container">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #999; text-align: center;">
+                <p>Loading Pixi.js...</p>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="addCircle">Add Circle</button>
+            <button id="addRectangle">Add Rectangle</button>
+            <button id="clearCanvas">Clear</button>
+            <div class="stats">
+                <span>Objects: <strong id="objectCount">0</strong></span>
+                <span>FPS: <strong id="fps">60</strong></span>
+            </div>
+        </div>
+    </div>
+    <script async src="https://cdn.jsdelivr.net/npm/pixi.js@7.3.2/dist/pixi.min.js"></script>
+    <script>
+        // Ensure PIXI is loaded before main.js runs
+        if (typeof PIXI === 'undefined') {
+            console.error('PIXI.js failed to load from CDN');
+            document.body.innerHTML += '<div style="color:red;padding:20px;background:#fdd;">Error: Failed to load Pixi.js library. Please check your internet connection.</div>';
+        }
+    </script>
+    <script defer src="main.js"></script>
+</body>
+</html>

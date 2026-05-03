@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2a4e 0%, #0f3c6b 100%);
+    color: #fff;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    gap: 0;
+}
+
+header {
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+header h1 {
+    font-size: 1.5em;
+    margin-bottom: 2px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+header p {
+    font-size: 0.85em;
+    opacity: 0.85;
+}
+
+#game-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #1a2a4e;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#game-container .loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#game-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+.stats {
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 0.9em;
+    flex-shrink: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stats strong {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2px 8px;
+    border-radius: 3px;
+    min-width: 30px;
+    text-align: center;
+}
+
+.controls {
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+button {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 1em;
+    font-weight: 600;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #4ecdc4 0%, #45b7d1 100%);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    active {
+        outline: none;
+    }
+}
+
+button:active {
+    transform: scale(0.95);
+    opacity: 0.85;
+}
+
+button:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+}
+
+/* Prevent zoom on double-tap */
+input, button, select {
+    font-size: 16px !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.3em;
+    }
+
+    header p {
+        font-size: 0.8em;
+    }
+
+    .stats {
+        gap: 20px;
+        font-size: 0.85em;
+    }
+
+    button {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+}
+
+/* Landscape mode */
+@media (max-height: 500px) {
+    header {
+        padding: 8px 12px;
+    }
+
+    header h1 {
+        font-size: 1.2em;
+        margin-bottom: 0;
+    }
+
+    header p {
+        display: none;
+    }
+
+    .stats {
+        padding: 6px 12px;
+        gap: 20px;
+        font-size: 0.8em;
+    }
+
+    .controls {
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    button {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+}

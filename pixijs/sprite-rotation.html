@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Pixi.js Sprite Rotation</title>
+    <link rel="stylesheet" href="sprite-style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>🌟 Spinning Sprites</h1>
+            <p>Watch them spin or tap to stop rotation</p>
+        </header>
+        <div id="game-container">
+            <div class="loading">Loading...</div>
+        </div>
+        <div class="stats">
+            <span>Sprites: <strong id="spriteCount">0</strong></span>
+            <span>FPS: <strong id="fps">60</strong></span>
+        </div>
+        <div class="controls">
+            <button id="addSprite">+ Add Sprite</button>
+            <button id="toggleRotation">Pause Rotation</button>
+            <button id="clearAll">Clear All</button>
+        </div>
+    </div>
+    <script async src="https://cdn.jsdelivr.net/npm/pixi.js@7.3.2/dist/pixi.min.js"></script>
+    <script src="sprite-main.js"></script>
+</body>
+</html>
