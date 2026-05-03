@@ -9,19 +9,41 @@
 <body>
     <div class="app-container">
         <header>
-            <h1>🎮 3D Sprite Inspector</h1>
-            <p>Drag to rotate sprites in 3D space</p>
+            <h1>🛍️ Product 3D Viewer</h1>
+            <p>Drag to rotate • Scroll to zoom • Click to buy</p>
         </header>
         <div id="game-container">
             <div class="loading">Loading...</div>
         </div>
+        
+        <!-- Product Info Panel -->
+        <div id="product-info" class="product-info hidden">
+            <div class="product-header">
+                <h2 id="product-name">Product</h2>
+                <button class="close-btn" onclick="closeProductInfo()">✕</button>
+            </div>
+            <div class="product-body">
+                <div class="price-section">
+                    <span class="price" id="product-price">$99.99</span>
+                    <div class="rating">⭐⭐⭐⭐⭐ (42 reviews)</div>
+                </div>
+                <p id="product-desc" class="description">Amazing product with 3D inspection capability</p>
+                <div class="product-actions">
+                    <button class="btn-primary">🛒 Add to Cart</button>
+                    <button class="btn-secondary">❤️ Wishlist</button>
+                </div>
+            </div>
+        </div>
+        
         <div class="stats">
-            <span>Sprites: <strong id="spriteCount">0</strong></span>
+            <span>Products: <strong id="spriteCount">0</strong></span>
             <span>FPS: <strong id="fps">60</strong></span>
+            <span>Zoom: <strong id="zoomLevel">100%</strong></span>
         </div>
         <div class="controls">
-            <button id="addSprite">+ Add Sprite</button>
-            <button id="clearAll">Clear All</button>
+            <button id="addSprite">+ View Product</button>
+            <button id="resetView">Reset View</button>
+            <button id="clearAll">Clear</button>
         </div>
     </div>
     <script async src="https://cdn.jsdelivr.net/npm/pixi.js@7.3.2/dist/pixi.min.js"></script>

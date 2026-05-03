@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, viewport-fit=cover">
+    <title>3D Product Viewer</title>
+    <link rel="stylesheet" href="3d-product-style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div class="header">
+            <h1>🎁 3D Product Inspector</h1>
+            <p>Drag to rotate • Scroll to zoom • Click for details</p>
+        </div>
+        <canvas id="canvas3d"></canvas>
+        
+        <!-- Stats Display -->
+        <div class="stats">
+            <div class="stats-row">
+                <span>FPS:</span>
+                <span id="fps">60</span>
+            </div>
+            <div class="stats-row">
+                <span>Zoom:</span>
+                <span id="zoomLevel">100%</span>
+            </div>
+            <div class="stats-row">
+                <span>Rotation:</span>
+                <span id="rotationInfo">0°</span>
+            </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <button id="addCube" class="btn-primary">+ New Product</button>
+            <button id="resetView" class="btn-secondary">Reset View</button>
+        </div>
+        <button id="toggleInfo" class="btn-info">ℹ</button>
+        
+        <!-- Product Info Panel -->
+        <div id="product-info" class="hidden">
+            <div class="product-header">
+                <div>
+                    <div id="product-name">Premium 3D Cube</div>
+                    <div id="product-price">$129.99</div>
+                </div>
+                <button class="close-btn" onclick="closeProductInfo()">✕</button>
+            </div>
+            <div id="product-desc">Interactive 3D product with full rotation and zoom capabilities. Perfect for product showcasing and immersive shopping experiences.</div>
+            <div class="product-actions">
+                <button class="action-btn add-cart">🛒 Add to Cart</button>
+                <button class="action-btn wishlist">❤️ Wishlist</button>
+            </div>
+        </div>
+    </div>
+    <script src="3d-product-main.js"></script>
+</body>
+</html>

@@ -47,6 +47,9 @@ function initializeApp() {
         let dragDelta = { x: 0, y: 0 };
         let frameCount = 0;
         let lastFpsUpdate = Date.now();
+        let zoomLevel = 1;
+        let selectedSprite = null;
+        let touchDistance = 0;
 
         // Character sprite colors
         const spriteColors = [
@@ -54,6 +57,13 @@ function initializeApp() {
             { skin: 0xfdbcb4, hair: 0xffd700, shirt: 0x4ecdc4, pants: 0x2a4a5e },
             { skin: 0xd4a574, hair: 0x1a1a1a, shirt: 0x45b7d1, pants: 0xf7b731 },
             { skin: 0xe8b4a8, hair: 0xa0522d, shirt: 0x5f27cd, pants: 0x0f3c6b }
+        ];
+
+        const productData = [
+            { name: 'Premium Avatar Pack', price: '$49.99', desc: 'Exclusive character avatar with premium animations' },
+            { name: 'Golden Bot Edition', price: '$34.99', desc: 'Limited edition robot collector\'s item' },
+            { name: 'Elite Character Skin', price: '$24.99', desc: 'Professional grade character model' },
+            { name: 'Retro Robot Classic', price: '$19.99', desc: 'Vintage inspired robotic companion' }
         ];
 
         function getRandomColors() {
@@ -189,6 +199,11 @@ function initializeApp() {
             container.spriteFaces = faces;
             container.size = size;
 
+            // Add product info
+            const productIndex = objects.length % productData.length;
+            container.product = productData[productIndex];
+            container.spriteType = spriteType;
+
             // Position randomly
             container.x = Math.random() * (app.screen.width - size) + size / 2;
             container.y = Math.random() * (app.screen.height - size) + size / 2;
@@ -197,12 +212,46 @@ function initializeApp() {
             container.rotationX = Math.random() * Math.PI;
             container.rotationY = Math.random() * Math.PI;
             container.rotationZ = Math.random() * Math.PI;
+            container.baseScale = 1;
+            container.glowScale = 1;
+
+            // Make interactive
+            container.interactive = true;
+            container.cursor = 'grab';
+            container.on('click', () => showProductInfo(container));
+            container.on('mouseenter', () => {
+                container.glowScale = 1.1;
+            });
+            container.on('mouseleave', () => {
+                container.glowScale = 1;
+            });
 
             app.stage.addChild(container);
             objects.push(container);
             updateObjectCount();
 
             return container;
+        }
+
+        // Show product information
+        function showProductInfo(sprite) {
+            selectedSprite = sprite;
+            const panel = document.getElementById('product-info');
+            document.getElementById('product-name').textContent = sprite.product.name;
+            document.getElementById('product-price').textContent = sprite.product.price;
+            document.getElementById('product-desc').textContent = sprite.product.desc;
+            panel.classList.remove('hidden');
+        }
+
+        // Close product info
+        window.closeProductInfo = function() {
+            document.getElementById('product-info').classList.add('hidden');
+            selectedSprite = null;
+        };
+
+        // Update zoom level display
+        function updateZoomDisplay() {
+            document.getElementById('zoomLevel').textContent = Math.round(zoomLevel * 100) + '%';
         }
 
         // Update 3D sprite display
@@ -275,24 +324,58 @@ function initializeApp() {
             isDragging = false;
         });
 
+        // Zoom with mouse wheel
+        canvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const zoomDelta = e.deltaY > 0 ? 0.9 : 1.1;
+            zoomLevel = Math.max(0.5, Math.min(3, zoomLevel * zoomDelta));
+            updateZoomDisplay();
+            objects.forEach(sprite => {
+                sprite.scale.set(zoomLevel);
+            });
+        });
+
         // Touch support
         document.addEventListener('touchstart', (e) => {
             if (e.touches.length > 0) {
                 isDragging = true;
                 lastMousePos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
             }
+            // Pinch zoom
+            if (e.touches.length === 2) {
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                touchDistance = Math.sqrt(dx * dx + dy * dy);
+            }
         });
 
         document.addEventListener('touchmove', (e) => {
-            if (isDragging && e.touches.length > 0) {
+            if (isDragging && e.touches.length === 1) {
                 dragDelta.x = (e.touches[0].clientX - lastMousePos.x) * 2;
                 dragDelta.y = (e.touches[0].clientY - lastMousePos.y) * 2;
                 lastMousePos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+            // Pinch zoom on mobile
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                const newDistance = Math.sqrt(dx * dx + dy * dy);
+                if (touchDistance > 0) {
+                    const zoomDelta = newDistance / touchDistance;
+                    zoomLevel = Math.max(0.5, Math.min(3, zoomLevel * zoomDelta));
+                    updateZoomDisplay();
+                    objects.forEach(sprite => {
+                        sprite.scale.set(zoomLevel);
+                    });
+                }
+                touchDistance = newDistance;
             }
         });
 
         document.addEventListener('touchend', () => {
             isDragging = false;
+            touchDistance = 0;
         });
 
         // Button handlers
@@ -306,9 +389,23 @@ function initializeApp() {
             updateObjectCount();
         });
 
+        document.getElementById('resetView').addEventListener('click', () => {
+            zoomLevel = 1;
+            updateZoomDisplay();
+            objects.forEach(sprite => {
+                sprite.scale.set(1);
+                sprite.rotationX = 0;
+                sprite.rotationY = 0;
+                sprite.rotationZ = 0;
+            });
+        });
+
         // Create initial sprites
         create3DSprite();
         create3DSprite();
+
+        // Initialize zoom display
+        updateZoomDisplay();
 
         // Animation loop
         function animate() {
@@ -332,6 +429,10 @@ function initializeApp() {
                 } else {
                     sprite.rotationZ += 0.003;
                 }
+
+                // Initialize glowScale if not set
+                if (!sprite.glowScale) sprite.glowScale = 1;
+                sprite.scale.set(zoomLevel * sprite.glowScale);
 
                 updateSpriteDisplay(sprite);
             });
